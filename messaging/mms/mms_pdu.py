@@ -982,6 +982,16 @@ class MMSEncoder(wsp_pdu.Encoder):
         return [message_types.get(message_type, 0x80)]
 
     @staticmethod
+    def encode_response_status_value(response_status):
+        response_status_values = {
+            'Ok': 0x80,
+            'Error-unspecified': 0x81,
+            'Error-service-denied': 0x82,
+        }
+
+        return [response_status_values.get(response_status, 0x80)]
+    
+    @staticmethod
     def encode_status_value(status_value):
         status_values = {
             'Expired': 0x80,
